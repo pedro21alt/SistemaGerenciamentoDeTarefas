@@ -11,7 +11,7 @@ Em desenvolvimento
 * MySQL
 
 ## Time de Desenvolvedores
-* João da Silva
+* João Silva
 
 ## Objetivo do Software
 O objetivo deste software é permitir que usuários gerenciem suas tarefas diárias de forma eficiente, organizando-as por prioridade e status, e acompanhando seu progresso.
