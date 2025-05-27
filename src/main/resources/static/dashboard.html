@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos específicos para o dashboard que complementam o style.css */
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .task-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .task-actions button {
+            width: auto;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+        .add-task-btn {
+            margin-top: 20px;
+            background-color: #28a745; /* Verde para adicionar */
+        }
+        .add-task-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Tarefas</h1>
+        <ul class="task-list">
+            <li class="task-item">
+                <span>Revisar Atividade 1 PI</span>
+                <div class="task-actions">
+                    <button style="background-color: #ffc107; color: #333;">Editar</button>
+                    <button style="background-color: #dc3545;">Excluir</button>
+                </div>
+            </li>
+            <li class="task-item completed">
+                <span>Comprar mantimentos</span>
+                <div class="task-actions">
+                    <button style="background-color: #ffc107; color: #333;">Editar</button>
+                    <button style="background-color: #dc3545;">Excluir</button>
+                </div>
+            </li>
+            <li class="task-item">
+                <span>Pagar contas</span>
+                <div class="task-actions">
+                    <button style="background-color: #ffc107; color: #333;">Editar</button>
+                    <button style="background-color: #dc3545;">Excluir</button>
+                </div>
+            </li>
+        </ul>
+        <button class="add-task-btn" onclick="window.location.href='nova-tarefa.html'">Adicionar Nova Tarefa</button>
+        <p style="text-align: center; margin-top: 20px;"><a href="login.html">Sair</a></p>
+    </div>
+</body>
+</html>
