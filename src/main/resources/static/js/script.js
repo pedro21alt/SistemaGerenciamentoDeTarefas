@@ -11,7 +11,6 @@ function exibirErro(elementoInput, mensagem) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = mensagem;
-    // Insere a div de erro após o elemento input
     elementoInput.parentNode.insertBefore(errorDiv, elementoInput.nextSibling);
 }
 
@@ -27,40 +26,33 @@ function removerErro(elementoInput) {
 function validarLogin(event) {
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('senha');
-    let isValid = true; // Flag para controlar a validade geral do formulário
+    let isValid = true;
 
-    // Limpar mensagens de erro anteriores antes de revalidar
     removerErro(emailInput);
     removerErro(senhaInput);
 
-    // Validação de Email
     if (emailInput.value.trim() === '') {
         exibirErro(emailInput, 'O email é obrigatório.');
         isValid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) { // Regex para formato de email
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
         exibirErro(emailInput, 'Formato de email inválido.');
         isValid = false;
     }
 
-    // Validação de Senha
     if (senhaInput.value.trim() === '') {
         exibirErro(senhaInput, 'A senha é obrigatória.');
         isValid = false;
-    } else if (senhaInput.value.length < 6) { // Exemplo: senha mínima de 6 caracteres
+    } else if (senhaInput.value.length < 6) {
         exibirErro(senhaInput, 'A senha deve ter no mínimo 6 caracteres.');
         isValid = false;
     }
 
-    // Se isValid for false, impede a submissão do formulário
     if (!isValid) {
         event.preventDefault();
+        return false;
     } else {
-        // Se as validações JS passarem, simular um "sucesso" para a atividade
-        alert('Login validado com sucesso! (Simulação frontend)');
-        event.preventDefault(); // Impede o envio real para o backend para esta atividade
-        window.location.href = 'dashboard.html'; // Redireciona para o dashboard após validação de sucesso
+        return true;
     }
-    return isValid;
 }
 
 // Validação para a página de cadastro de tarefa (nova-tarefa.html)
@@ -96,13 +88,10 @@ function validarTarefa(event) {
 
     if (!isValid) {
         event.preventDefault(); // Impede o envio do formulário se houver erros
+        return false;
     } else {
-        // Simulação de sucesso
-        alert('Tarefa validada e salva! (Simulação frontend)');
-        event.preventDefault(); // Impede o envio real
-        window.location.href = 'dashboard.html'; // Redireciona de volta para o dashboard
+        return true;
     }
-    return isValid;
 }
 
 // Validação para a página de cadastro de usuário (cadastro.html)
@@ -146,11 +135,8 @@ function validarCadastro(event) {
 
     if (!isValid) {
         event.preventDefault(); // Impede o envio do formulário se houver erros
+        return false;
     } else {
-        // Simulação de sucesso
-        alert('Cadastro validado com sucesso! (Simulação frontend)');
-        event.preventDefault();
-        window.location.href = 'login.html'; // Redireciona para a página de login após o cadastro
+        return true;
     }
-    return isValid;
 }

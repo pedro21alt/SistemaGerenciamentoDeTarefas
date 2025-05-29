@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${tarefa.id != null ? 'Editar Tarefa' : 'Nova Tarefa'}">Nova Tarefa - Gerenciador de Tarefas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <style>
+        /* Estilo para textarea (já no style.css, mas garantindo que não há sobreposição) */
+        textarea {
+            width: calc(100% - 20px); /* 100% menos padding */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        /* Estilo para select (já no style.css, mas garantindo que não há sobreposição) */
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${tarefa.id != null ? 'Editar Tarefa' : 'Adicionar Nova Tarefa'}">Adicionar Nova Tarefa</h1>
+
+        <form method="post" action="/salvar-tarefa" onsubmit="return validarTarefa(event)">
+            <input type="hidden" name="id" th:value="${tarefa.id}">
+
+            <div class="form-group">
+                <label for="titulo">Título da Tarefa:</label>
+                <input type="text" id="titulo" name="titulo" th:value="${tarefa.titulo}" required> </div>
+            <div class="form-group">
+                <label for="descricao">Descrição (Opcional):</label>
+                <textarea id="descricao" name="descricao" rows="4" th:text="${tarefa.descricao}"></textarea> </div>
+            <div class="form-group">
+                <label for="dataVencimento">Data de Vencimento:</label>
+                <input type="date" id="dataVencimento" name="dataVencimento" th:value="${tarefa.dataVencimento}" required> </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Pendente" th:selected="${tarefa.status == 'Pendente'}">Pendente</option> <option value="Em Andamento" th:selected="${tarefa.status == 'Em Andamento'}">Em Andamento</option> <option value="Concluída" th:selected="${tarefa.status == 'Concluída'}">Concluída</option> </select>
+            </div>
+            <button type="submit">Salvar Tarefa</button>
+            <p style="text-align: center; margin-top: 15px;"><a th:href="@{/dashboard}">Voltar para o Dashboard</a></p> </form>
+    </div>
+    <script th:src="@{/js/script.js}"></script> </body>
+</html>

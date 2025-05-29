@@ -1,0 +1,62 @@
+<<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gerenciador de Tarefas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <style>
+        /* Estilos específicos para o dashboard que complementam o style.css */
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .task-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .task-actions button {
+            width: auto;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+        .add-task-btn {
+            margin-top: 20px;
+            background-color: #28a745; /* Verde para adicionar */
+        }
+        .add-task-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="'Olá, ' + ${usuarioEmail} + '! Suas Tarefas'">Olá! Suas Tarefas</h1>
+        <p style="color: green; text-align: center;" th:if="${sucesso}" th:text="${sucesso}"></p>
+        <p style="color: red; text-align: center;" th:if="${erro}" th:text="${erro}"></p>
+
+        <ul class="task-list">
+            <li th:each="tarefa : ${tarefas}" th:classappend="${tarefa.status == 'Concluída' ? 'completed' : ''}" class="task-item">
+                <span th:text="${tarefa.titulo + ' (Vencimento: ' + tarefa.dataVencimento + ')'}">Nome da Tarefa (Vencimento: AAAA-MM-DD)</span>
+                <div class="task-actions">
+                    <a th:href="@{/nova-tarefa(id=${tarefa.id})}"><button style="background-color: #ffc107; color: #333;">Editar</button></a>
+                    <a th:href="@{/deletar-tarefa/{id}(id=${tarefa.id})}"><button style="background-color: #dc3545;">Excluir</button></a>
+                </div>
+            </li>
+            <li th:if="${#lists.isEmpty(tarefas)}" style="text-align: center; color: #777;">Nenhuma tarefa encontrada.</li>
+        </ul>
+        <a th:href="@{/nova-tarefa}" class="add-task-btn"><button>Adicionar Nova Tarefa</button></a>
+        <p style="text-align: center; margin-top: 20px;"><a th:href="@{/logout}">Sair</a></p>
+    </div>
+    <script th:src="@{/js/script.js}"></script> </body>
+</html>

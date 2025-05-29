@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gerenciador de Tarefas</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> </head>
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form onsubmit="return validarLogin(event)">
+        <p style="color: red; text-align: center;" th:if="${erroLogin}" th:text="${erroLogin}"></p>
+        <form method="post" action="/login" onsubmit="return validarLogin(event)">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -19,9 +18,7 @@
                 <input type="password" id="senha" name="senha" required>
             </div>
             <button type="submit">Entrar</button>
-            <p style="text-align: center; margin-top: 15px;">Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
-        </form>
+            <p style="text-align: center; margin-top: 15px;">Não tem uma conta? <a th:href="@{/cadastro}">Faça login aqui</a></p> </form>
     </div>
-    <script src="js/script.js"></script>
-</body>
+    <script th:src="@{/js/script.js}"></script> </body>
 </html>
